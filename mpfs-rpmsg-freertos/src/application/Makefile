@@ -38,6 +38,9 @@ SRCS += \
 	src/application/inc/pingpong_demo.c \
 	src/application/inc/console_demo.c \
 	src/application/inc/sample_echo_demo.c \
+	src/application/altyapi/altyapi_main.c \
+	src/application/altyapi/health_beacon.c \
+	src/application/altyapi/pfframe.c \
 
 ifdef REMOTEPROC
 SRCS += src/application/inc/rsc_table.c
