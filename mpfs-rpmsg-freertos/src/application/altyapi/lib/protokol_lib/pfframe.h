@@ -1,7 +1,11 @@
 /*
  * pfframe.h — PolarFire binary frame serializer / parser.
  *
- * Wire layout (see versiyon.h / claud.md §2):
+ * Self-contained wire-format library. The "AA 55" framing is described
+ * end-to-end here; applications that use this lib supply their own
+ * msg_id catalog and payload structs.
+ *
+ * Wire layout:
  *   [0]      0xAA          header byte 1
  *   [1]      0x55          header byte 2
  *   [2]      msg_id  u8
@@ -9,6 +13,8 @@
  *   [5..5+N) payload bytes
  *   [5+N]    0x0D          footer CR
  *   [5+N+1]  0x0A          footer LF
+ *
+ * Total frame size = PFFRAME_OVERHEAD + N.
  */
 
 #ifndef PFFRAME_H
@@ -16,11 +22,17 @@
 
 #include <stdint.h>
 
-#include "altyapi/versiyon.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#define PFFRAME_HEADER_1     0xAAu
+#define PFFRAME_HEADER_2     0x55u
+#define PFFRAME_FOOTER_CR    0x0Du
+#define PFFRAME_FOOTER_LF    0x0Au
+
+#define PFFRAME_OVERHEAD     7u
+#define PFFRAME_MAX_PAYLOAD  0xFFFFu
 
 /* Serialize a frame into out[]. Returns the total frame length on success,
  * or 0 if the output buffer cannot hold PFFRAME_OVERHEAD + payload_len bytes. */

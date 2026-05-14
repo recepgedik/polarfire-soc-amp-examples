@@ -40,12 +40,16 @@ SRCS += \
 	src/application/inc/sample_echo_demo.c \
 	src/application/altyapi/altyapi_main.c \
 	src/application/altyapi/health_beacon.c \
-	src/application/altyapi/pfframe.c \
 
 ifdef REMOTEPROC
 SRCS += src/application/inc/rsc_table.c
 endif
 
+PROTOKOL_LIB_DIR := src/application/altyapi/lib/protokol_lib
+
 INCLUDES += \
 	-Isrc/application \
+	-I$(PROTOKOL_LIB_DIR) \
+
+EXT_LIBS += -L$(PROTOKOL_LIB_DIR) -lpolarfire_frame_lib
 

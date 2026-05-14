@@ -15,8 +15,9 @@
 
 #include "altyapi/altyapi_main.h"
 #include "altyapi/health_beacon.h"
-#include "altyapi/pfframe.h"
 #include "altyapi/versiyon.h"
+
+#include "pfframe.h"  /* from protokol_lib */
 
 #define HEALTH_BEACON_PERIOD_MS  1000u
 #define HEALTH_PAYLOAD_LEN       12u

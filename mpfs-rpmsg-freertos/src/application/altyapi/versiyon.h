@@ -1,8 +1,9 @@
 /*
- * versiyon.h — Polarfire Altyapı firmware version & protocol constants.
+ * versiyon.h — Polarfire Altyapı firmware version & message catalog.
  *
- * Mirror of core/protocol.py in the web_arayuz project (claud.md §2/§3).
- * Hand-synced — both files must change together.
+ * Wire-format constants (PFFRAME_HEADER_*, PFFRAME_OVERHEAD, ...) live in
+ * the external protokol_lib (pfframe.h). This file keeps only the bits
+ * specific to this firmware: identity strings, message IDs, payload structs.
  */
 
 #ifndef VERSIYON_H
@@ -18,14 +19,6 @@ extern "C" {
 #define FIRMWARE_VERSION_MAJOR  1u
 #define FIRMWARE_VERSION_MINOR  0u
 #define FIRMWARE_VERSION_PATCH  0u
-
-#define PFFRAME_HEADER_1   0xAAu
-#define PFFRAME_HEADER_2   0x55u
-#define PFFRAME_FOOTER_CR  0x0Du
-#define PFFRAME_FOOTER_LF  0x0Au
-
-#define PFFRAME_OVERHEAD       7u
-#define PFFRAME_MAX_PAYLOAD    0xFFFFu
 
 #define MSG_ID_TELEMETRY        0x01u
 #define MSG_ID_SYSTEM_HEALTH    0x02u
