@@ -75,6 +75,10 @@ endif
 
 MCMODEL=-mcmodel=medany
 
+MYLIB_DIR := /home/pc_3940/Desktop/mpfs_ws/mylib
+INCLUDES  += -I$(MYLIB_DIR)/src
+EXT_LIBS  += -L$(MYLIB_DIR)/Debug -lmylib
+
 include src/application/rules.mk
 include src/application/targets.mk
 include src/platform/Makefile
@@ -90,7 +94,7 @@ endif
 
 $(RISCV_TARGET): $(OBJS)  $(DEPENDENCIES) $(LINKER_SCRIPT)
 	@$(ECHO) " LD    $@";
-	$(CMD_PREFIX)$(CC) -T $(LINKER_SCRIPT) -static -nostdlib -nostartfiles -nodefaultlibs -Wl,-Map=$(BINDIR)/output.map -Wl,--gc-sections -o $(BINDIR)/$@ $(OBJS)
+	$(CMD_PREFIX)$(CC) -T $(LINKER_SCRIPT) -static -nostdlib -nostartfiles -nodefaultlibs -Wl,-Map=$(BINDIR)/output.map -Wl,--gc-sections -o $(BINDIR)/$@ $(OBJS) $(EXT_LIBS)
 	@$(ECHO) " NM        `basename $@ .elf`.sym";
 	$(CMD_PREFIX)$(NM) -n $(BINDIR)/$@ > $(BINDIR)/`basename $@ .elf`.sym
 	@$(ECHO) " BIN       `basename $@ .elf`.bin"
