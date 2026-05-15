@@ -40,6 +40,7 @@ SRCS += \
 	src/application/inc/sample_echo_demo.c \
 	src/application/altyapi/altyapi_main.c \
 	src/application/altyapi/health_beacon.c \
+	src/application/altyapi/paket_handler.c \
 
 ifdef REMOTEPROC
 SRCS += src/application/inc/rsc_table.c

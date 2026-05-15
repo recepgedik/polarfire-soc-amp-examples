@@ -15,18 +15,23 @@ extern "C" {
 
 #include <stdint.h>
 
-#define FIRMWARE_VERSION_STR    "sim-1.0.0"
+#define FIRMWARE_VERSION_STR    "1.0.0"
 #define FIRMWARE_VERSION_MAJOR  1u
 #define FIRMWARE_VERSION_MINOR  0u
 #define FIRMWARE_VERSION_PATCH  0u
 
-#define MSG_ID_TELEMETRY        0x01u
-#define MSG_ID_SYSTEM_HEALTH    0x02u
-#define MSG_ID_VERSION_QUERY    0x10u
-#define MSG_ID_VERSION_RESPONSE 0x11u
-#define MSG_ID_STATS_QUERY      0x12u
-#define MSG_ID_STATS_RESPONSE   0x13u
-#define MSG_ID_RESET            0x14u
+/* Paket tipleri — pfframe başlığındaki msg_id alanında taşınan değerler.
+ * Boş bir paket göndermek anlamlı olmadığından PAKET_NONE = 0 reserve. */
+typedef enum {
+    PAKET_NONE             = 0x00u,
+    PAKET_TELEMETRY        = 0x01u,
+    PAKET_SYSTEM_HEALTH    = 0x02u,
+    PAKET_VERSION_QUERY    = 0x10u,
+    PAKET_VERSION_RESPONSE = 0x11u,
+    PAKET_STATS_QUERY      = 0x12u,
+    PAKET_STATS_RESPONSE   = 0x13u,
+    PAKET_RESET            = 0x14u,
+} paket_tipi_t;
 
 typedef struct {
     float pitch;

@@ -12,6 +12,7 @@
 
 #include "altyapi/altyapi_main.h"
 #include "altyapi/health_beacon.h"
+#include "altyapi/paket_handler.h"
 
 void altyapi_start(void)
 {
@@ -25,6 +26,7 @@ void altyapi_start(void)
                   MSS_UART_DATA_8_BITS | MSS_UART_NO_PARITY);
 
     start_health_beacon_task();
+    start_paket_handler_task();
 
     vTaskStartScheduler();
 

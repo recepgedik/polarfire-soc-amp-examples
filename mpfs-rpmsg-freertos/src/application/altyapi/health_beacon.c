@@ -68,7 +68,7 @@ static void health_beacon_task(void *pvParameters)
         pack_health_payload(payload, system_time_ms, g_reset_count, g_error_count);
 
         uint16_t n = pfframe_olustur(frame, (uint16_t)sizeof(frame),
-                                     MSG_ID_SYSTEM_HEALTH,
+                                     (uint8_t)PAKET_SYSTEM_HEALTH,
                                      payload, HEALTH_PAYLOAD_LEN);
         if (n > 0u)
         {
